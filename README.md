@@ -1,5 +1,5 @@
 # Load-Balancing-with-NGINX
-## A comprehensive guide to setting up and configuring load balancers using NGINX.
+## A comprehensive guide to setting up and configuring load balancers using NGINX and Node.js servers.
 
 This project demonstrates various load balancing techniques using Nginx and Node.js servers.
 ## Table of Contents
