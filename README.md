@@ -241,4 +241,66 @@ Hello from Node.js server on port 3001! X-Forwarded-For: 192.168.146.146, X-Real
 ```
 - This distribution confirms that the IP Hash load balancing is functioning as intended. Each unique IP address is consistently routed to the same server, while different IPs are distributed among the available servers. This approach ensures session persistence while still achieving load distribution across the server pool.
 
+## Weighted Round Robin Load Balancing
+
+Weighted Round Robin is a load balancing algorithm that distributes incoming requests across multiple servers based on their assigned weights. Servers with higher weights receive more requests proportionally.
+
+### Configuration
+
+#### Nginx (nginx.conf)
+
+```nginx:WeightedRoundRobbin\nginx.conf
+upstream backend {
+    server 127.0.0.1:3000 weight=3;
+    server 127.0.0.1:3001 weight=2;
+    server 127.0.0.1:3002 weight=1;
+}
+
+server {
+    listen 8080;
+    server_name localhost;
+
+    location / {
+        proxy_pass http://backend;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+}
+```
+#### Node.js Servers
+We have three Node.js servers running on ports 3000, 3001, and 3002.
+
+
+##### 1. Server 1 (server1.js):
+```javascript
+const http = require('http');
+const port = 3000;
+
+let requestCount = 0;
+
+const server = http.createServer((req, res) => {
+  requestCount++;
+  console.log(`Server on port ${port} received request #${requestCount}`);
+  res.writeHead(200, { 'Content-Type': 'text/plain' });
+  res.end(`Hello from Node.js server on port ${port}! Request #${requestCount}`);
+});
+
+server.listen(port, () => {
+  console.log(`Server running on http://localhost:${port}`);
+});
+
+```
+Similar configurations exist for server2.js and server3.js, running on ports 3001 and 3002 respectively.
+
+##### 2. Test Script (weighted_round_robin.ps1)
+```powershell
+$totalRequests = 60
+
+for ($i = 1; $i -le $totalRequests; $i++) {
+    Write-Host "Request $i"
+    curl.exe http://localhost:8080
+    Write-Host "`n"
+}
+```
 
