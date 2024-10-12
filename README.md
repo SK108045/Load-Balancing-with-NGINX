@@ -68,7 +68,7 @@ Least Connections is a dynamic load balancing algorithm that directs traffic to 
 
 #### Nginx (nginx.conf)
 
-```nginx:LeastConnectionsLoadBalancing\nginx.conf
+```nginx
 upstream nodejs_cluster {
     least_conn;
     server localhost:3000;
@@ -109,7 +109,7 @@ server.listen(port, () => {
   console.log(`Server 1 running on http://localhost:${port}`);
 });
 ```
-LeastConnectionsLoadBalancing\server1.js
+
 ##### 2. Server 2 (server2.js):
 ```javascript
 const http = require('http');
