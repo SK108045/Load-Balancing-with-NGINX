@@ -18,7 +18,7 @@ Round Robin is a simple and effective load balancing technique that distributes 
 
 #### Nginx (nginx.conf)
 
-```nginx:RoundRobbinLoadBalancing\nginx.conf
+```nginx
 upstream nodejs_cluster {
     server localhost:3000;
     server localhost:3001;
@@ -249,7 +249,7 @@ Weighted Round Robin is a load balancing algorithm that distributes incoming req
 
 #### Nginx (nginx.conf)
 
-```nginx:WeightedRoundRobbin\nginx.conf
+```nginx
 upstream backend {
     server 127.0.0.1:3000 weight=3;
     server 127.0.0.1:3001 weight=2;
