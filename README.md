@@ -303,4 +303,15 @@ for ($i = 1; $i -le $totalRequests; $i++) {
     Write-Host "`n"
 }
 ```
-
+- Start the node js servers ```node server1.js  ``` ,```node server2.js  1```, ```node server3.js```.
+- Ensure Nginx is running with the provided configuration and run the Powershell script ```.\weighted_round_robin.ps1```
+#### Analysis
+You'll observe that the requests are distributed in this manner 
+```powerhell
+===========
+ OUTPUT
+==========
+Server 1 (weight 3): 30 requests (50% of total)
+Server 2 (weight 2): 20 requests (33.33% of total)
+Server 3 (weight 1): 10 requests (16.67% of total)
+```
