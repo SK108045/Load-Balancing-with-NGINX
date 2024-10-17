@@ -317,12 +317,3 @@ Server 3 (weight 1): 10 requests (16.67% of total)
 ```
 
 
-
-
-
-### Visual Representation
-
-<canvas id="loadBalancerCanvas" width="600" height="400"></canvas>
-<script src="loadBalancer.js"></script>
-
-
