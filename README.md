@@ -59,7 +59,7 @@ server.listen(port, () => {
 ```
 - Similar configurations exist for server2.js and server3.js, running on ports 3001 and 3002 respectively.
 - Start the node js servers ```node server1.js  ``` ,```node server2.js  1```, ```node server3.js```
-- Open your web browser and navigate to http://localhost:8080. Refresh the page multiple times. You should see the response cycling through the 
+- Open your web browser and navigate to your port running nginx. Refresh the page multiple times. You should see the response cycling through the 
   three server messages, demonstrating the Round Robin load balancing in action.
 
 ## Least Connections Load Balancing
