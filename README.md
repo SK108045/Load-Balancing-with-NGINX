@@ -130,7 +130,7 @@ server.listen(port, () => {
 Server 3 (server3.js) is similar to server1.js but runs on port 3002.
 
 - Start the node js servers ```node server1.js  ``` ,```node server2.js  1```, ```node server3.js```
-- Open your web browser and navigate to http://localhost:8080. Refresh the page multiple times. You should observe that server2 receives fewer 
+- Open your web browser and navigate to your port running nginx. Refresh the page multiple times. You should observe that server2 receives fewer 
   requests due to its longer response time, demonstrating the Least Connections load balancing in action.
   
 ## IP Hash Load Balancing
